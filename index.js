@@ -4,10 +4,13 @@ const app = express();
 
 const PORT = 3000;
 
+app.set('view engine', 'pug');
+app.set('views', './pugs');
+
 app.use(express.json());
 
 app.get('/', (req, res) => {
-  res.send('hello')
+  res.render('index');
 })
 
 app.listen(PORT, () => {
