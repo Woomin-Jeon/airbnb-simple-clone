@@ -1,5 +1,9 @@
 # AirBnB 클론 코딩 (백엔드)
 
+## 배포 주소
+
+[http://boostcamp-airbnb-j181.herokuapp.com/](http://boostcamp-airbnb-j181.herokuapp.com/)
+
 ## 기획서
 
 - [AirBnB 주요 기능](https://docs.google.com/presentation/d/1nHR2hsYWBfXgZY_P7rqFWsKw2kAXQtDRe813Z82NSek/edit#slide=id.g5df6c55d0c_0_5)
