@@ -28,10 +28,23 @@ script(type='text/javascript').
   let validId = null;
   let validPassword = null;
 
-  $id_check_button.addEventListener('click', () => {
-    idValidation = true;
+  $id_check_button.addEventListener('click', async () => {
     validId = $id_input.value;
-    alert($id_input.value);
+
+    const response = await fetch('/user/signup/id-validation', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json'},
+      body: JSON.stringify({ id: validId }),
+    });
+    const validation = await response.json();
+
+    if (!validation) {
+      alert('이미 사용중인 아이디입니다.');
+      return;
+    }
+
+    idValidation = true;
+    alert('사용할 수 있는 아이디입니다.');  
   });
 
   $pw_check_button.addEventListener('click', () => {
@@ -79,9 +92,7 @@ script(type='text/javascript').
     
     fetch('/user/signup', {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(data),
     });
   });

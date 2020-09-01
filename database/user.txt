@@ -1,1 +1,2 @@
-{"id":"boostcamp","pw":"boostcamp","name":"김부캠"}
+{"id":"boost","pw":"boost","name":"김부부"}
+{"id":"camp","pw":"camp","name":"김캠캠"}
