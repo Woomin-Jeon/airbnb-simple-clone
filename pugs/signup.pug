@@ -77,5 +77,11 @@ script(type='text/javascript').
       name: $name_input.value,
     }
     
-    fetch('/user-signup', { method: 'POST', body: JSON.stringify(data) });
+    fetch('/user-signup', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    });
   });
