@@ -4,3 +4,8 @@ html
     meta(charset='utf-8')
   body
     div Hello J181_Woomin
+    button(onclick='redirect()') 회원가입
+    script(type='text/javascript').
+      const redirect = () => {
+        window.location.href = '/signup'
+      }
