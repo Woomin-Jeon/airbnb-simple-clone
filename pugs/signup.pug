@@ -63,7 +63,7 @@ script(type='text/javascript').
     alert('비밀번호가 일치합니다.');
   });
 
-  $next_button.addEventListener('click', () => {
+  $next_button.addEventListener('click', async () => {
     if (!idValidation) {
       alert('아이디 중복을 확인해주세요.');
       return;
@@ -90,9 +90,12 @@ script(type='text/javascript').
       name: $name_input.value,
     }
     
-    fetch('/user/signup', {
+    await fetch('/user/signup', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(data),
     });
+
+    alert('가입이 완료되었습니다! 메인 페이지로 이동합니다.');
+    window.location.href = '/';
   });
