@@ -18,7 +18,7 @@ app.get('/signup', (req, res) => {
   res.render('signup');
 });
 
-app.post('/user-signup', async (req, res) => {
+app.post('/user/signup', async (req, res) => {
   await DB.addUser(req.body);
   res.status(200).send();
 });
