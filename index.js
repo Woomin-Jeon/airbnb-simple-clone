@@ -1,4 +1,5 @@
 const express = require('express');
+const DB = require('./DB');
 
 const app = express();
 
@@ -17,8 +18,9 @@ app.get('/signup', (req, res) => {
   res.render('signup');
 });
 
-app.post('/user-signup', (req, res) => {
-  console.log(req.body);
+app.post('/user-signup', async (req, res) => {
+  await DB.addUser(req.body);
+  res.status(200).send();
 });
 
 app.listen(port, () => {
