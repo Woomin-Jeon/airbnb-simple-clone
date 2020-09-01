@@ -1,6 +1,5 @@
 const fs = require('fs');
-
-const useSHA256 = require('./encryption');
+const useSHA256 = require('../util/encryption');
 
 module.exports = DB = {
   getUsers() {
