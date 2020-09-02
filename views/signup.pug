@@ -6,20 +6,22 @@ html
   body
     div(class='signup-title') 회원가입
     div(class='signup-body')
-      form(action='/user/signup', method='post')
+      form(action='/signup', method='post')
         div
           div(class='signup-elementTitle') 아이디
           input(class='signup-input' name='id' id="id-input" type='text' placeholder="아이디를 입력 해주세요")
-          br
-          button(class='signup-idCheckButton' id="id-check-button") 중복 확인
         div
           div(class='signup-elementTitle') 비밀번호
           input(class='signup-input' name='pw' id="pw-input1" type='password' placeholder="비밀번호를 입력 해주세요.")
           br
           input(class='signup-input' name='pwCheck' id="pw-input2" type='password' placeholder="비밀번호를 다시 입력 해주세요.")
-          br
-          button(class='signup-pwCheckButton' id="pw-check-button") 확인
         div
           div(class='signup-elementTitle') 이름
           input(class='signup-input' name='name' id="name-input" type="text" placeholder="이름을 입력해주세요.")
         input(class='signup-completeButton' id="next-button" type='submit' value='완료')
+    div(class='signup-modal')
+      if idDuplication
+        include ./modals/idDuplication.pug
+    div(class='signup-modal')
+      if pwNotMatched
+        include ./modals/pwNotMatched.pug
