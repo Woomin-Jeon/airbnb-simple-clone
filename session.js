@@ -4,25 +4,51 @@ module.exports = session = {
   sessionLength: 20,
 
   setSession(res, userId) {
-    res.cookie(this.sessionName, this.getRandomString());
-    this.memory.push({ id: userId, sid: this.getRandomString() });
+    const randomSession = this._getRandomString();
+
+    res.cookie(this.sessionName, randomSession);
+    this.memory.push({ id: userId, sid: randomSession });
+  },
+
+  removeSession(req, res) {
+    const sid = this._getSidFromCookie(req);
+    const targetSidIndex = this.memory.findIndex(v => v.sid === sid);
+
+    this.memory.splice(targetSidIndex, 1);
+    res.clearCookie(this.sessionName);
   },
 
   getIdBySession(req) {
+    const sid = this._getSidFromCookie(req);
+
+    if (!sid) {
+      return null;
+    }
+
+    const userSession = this.memory.find(v => v.sid === sid);
+
+    if (!userSession) {
+      return null;
+    }
+
+    return userSession.id;
+  },
+
+  _getSidFromCookie(req) {
     const cookieString = req.headers.cookie;
 
     if (!cookieString) {
-      return -1;
+      return null;
     }
 
     const cookies = cookieString.split(/; /).map(v => v.split('='))
     const myCookie = cookies.find(cookie => cookie[0] === this.sessionName);
+
     const sid = myCookie[1];
+    return sid;
+  },
 
-    return this.memory.find(v => v.sid === sid).id;
-  }
-
-  getRandomString() {
+  _getRandomString() {
     const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
     
     let randomString = "";
@@ -32,5 +58,5 @@ module.exports = session = {
     }
 
     return randomString;
-  }
+  },
 }

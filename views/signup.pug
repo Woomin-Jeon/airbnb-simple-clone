@@ -1,101 +1,27 @@
-div(style="background: white; margin: 10px auto 150px auto;border: none;box-shadow: 5px 2px 20px 0px; padding: 20px; width: 300px; border-radius: 15px;")
-  div
-    div(style="font-size: 25px; font-weight: bold; margin: 40px 0 20px 0; color: #42648F;") 아이디
-    input(style="margin-left: 30px; height: 20px" id="id-input" type='text' placeholder="아이디를 입력 해주세요")
-    button(style="background-color: white; border: 1px solid; height: 26px; font-weight: bold; border-radius: 5px; color: #42648F;" id="id-check-button") 중복 확인
-  div
-    div(style="font-size: 25px; font-weight: bold; margin: 40px 0 20px 0; color: #42648F;") 비밀번호
-    input(style="margin-left: 30px; height: 20px" id="pw-input1" type='password' placeholder="비밀번호를 입력 해주세요.")
-    br
-    input(style="margin-left: 30px; height: 20px" id="pw-input2" type='password' placeholder="비밀번호를 다시 입력 해주세요.")
-    button(style="background-color: white; font-weight: bold; border-radius: 5px; border: 1px solid; height: 26px; color: #42648F;" id="pw-check-button") 확인
-  div
-    div(style="font-size: 25px; font-weight: bold; margin: 40px 0 20px 0; color: #42648F;") 이름
-    input(style="margin-left: 30px; height: 20px" id="name-input" type="text" placeholder="이름을 입력해주세요.")
-  button(style="margin: 50px 0 0 240px; font-weight: bold; border-radius: 5px; color: #42648F; background-color: white; border: 1px solid; font-size: 20px;" id="next-button") 가입
-
-script(type='text/javascript').
-  const $id_input = document.getElementById('id-input')
-  const $id_check_button = document.getElementById('id-check-button');
-  const $pw_input1 = document.getElementById('pw-input1');
-  const $pw_input2 = document.getElementById('pw-input2');
-  const $pw_check_button = document.getElementById('pw-check-button');
-  const $name_input = document.getElementById('name-input');
-  const $next_button = document.getElementById('next-button');
-
-  let idValidation = false;
-  let passwordValidation = false;
-  let validId = null;
-  let validPassword = null;
-
-  $id_check_button.addEventListener('click', async () => {
-    validId = $id_input.value;
-
-    const response = await fetch('/user/signup/id-validation', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json'},
-      body: JSON.stringify({ id: validId }),
-    });
-    const validation = await response.json();
-
-    if (!validation) {
-      alert('이미 사용중인 아이디입니다.');
-      return;
-    }
-
-    idValidation = true;
-    alert('사용할 수 있는 아이디입니다.');  
-  });
-
-  $pw_check_button.addEventListener('click', () => {
-    if (!$pw_input1.value || !$pw_input2.value) {
-      alert('비밀번호를 입력해주세요');
-      return;
-    }
-
-    if ($pw_input1.value !== $pw_input2.value) {
-      alert('비밀번호가 서로 일치하지 않습니다. 다시 확인해주세요.');
-      return;
-    }
-
-    passwordValidation = true;
-    validPassword = $pw_input1.value;
-    alert('비밀번호가 일치합니다.');
-  });
-
-  $next_button.addEventListener('click', async () => {
-    if (!idValidation) {
-      alert('아이디 중복을 확인해주세요.');
-      return;
-    }
-
-    if (!passwordValidation) {
-      alert('비밀번호가 일치하는지 확인해주세요.');
-      return;
-    }
-
-    if (validId !== $id_input.value) {
-      alert('아이디 중복을 다시 확인해주세요.');
-      return;
-    }
-
-    if ($pw_input1.value !== $pw_input2.value || validPassword !== $pw_input1.value) {
-      alert('비밀번호 확인을 다시 해주세요.');
-      return;
-    }
-
-    const data = {
-      id: $id_input.value,
-      pw: $pw_input1.value,
-      name: $name_input.value,
-    }
-    
-    await fetch('/user/signup', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(data),
-    });
-
-    alert('가입이 완료되었습니다! 메인 페이지로 이동합니다.');
-    window.location.href = '/';
-  });
+doctype html
+html
+  head
+    meta(charset='utf-8')
+    link(type='text/css' rel='stylesheet' href='./css/signup.css')
+  body
+    div(class='signup-title') 회원가입
+    div(class='signup-body')
+      form(action='/signup', method='post')
+        div
+          div(class='signup-elementTitle') 아이디
+          input(class='signup-input' name='id' id="id-input" type='text' placeholder="아이디를 입력 해주세요")
+        div
+          div(class='signup-elementTitle') 비밀번호
+          input(class='signup-input' name='pw' id="pw-input1" type='password' placeholder="비밀번호를 입력 해주세요.")
+          br
+          input(class='signup-input' name='pwCheck' id="pw-input2" type='password' placeholder="비밀번호를 다시 입력 해주세요.")
+        div
+          div(class='signup-elementTitle') 이름
+          input(class='signup-input' name='name' id="name-input" type="text" placeholder="이름을 입력해주세요.")
+        input(class='signup-completeButton' id="next-button" type='submit' value='완료')
+    div(class='signup-modal')
+      if idDuplication
+        include ./modals/idDuplication.pug
+    div(class='signup-modal')
+      if pwNotMatched
+        include ./modals/pwNotMatched.pug

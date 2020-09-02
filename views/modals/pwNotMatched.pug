@@ -1,0 +1,16 @@
+doctype html
+html
+  head
+    meta(charset='utf-8')
+    link(type='text/css' rel='stylesheet' href='./css/modal.css')
+  body
+    div(id='modal' class='modal-body')
+      div 패스워드가 일치하지 않습니다. 다시 확인해주세요.
+      button(id='button') 닫기
+    script.
+      const $modal = document.getElementById('modal');
+      const $button = document.getElementById('button');
+
+      $button.addEventListener('click', () => {
+        $modal.style.display = 'none';
+      });

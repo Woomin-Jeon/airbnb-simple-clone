@@ -1,0 +1,64 @@
+.signup-body {
+  background: white;
+  margin: 10px auto 150px auto;
+  box-shadow: 5px 2px 20px 0px;
+  padding: 20px;
+  width: 300px; border-radius: 15px;
+}
+
+.signup-title {
+  margin: 25px auto;
+  width: 140px;
+  font-size: 35px;
+  font-weight: bold;
+  color: #42648F;
+}
+
+.signup-elementTitle {
+  font-size: 25px;
+  font-weight: bold;
+  margin: 40px 0 20px 0;
+  color: #42648F;
+}
+
+.signup-input {
+  margin-left: 30px;
+  height: 20px;
+}
+
+.signup-idCheckButton {
+  background-color: white;
+  border: 1px solid;
+  height: 26px;
+  font-weight: bold;
+  border-radius: 5px;
+  color: #42648F;
+  margin: 3px 0 0 148px;
+}
+
+.signup-pwCheckButton {
+  background-color: white;
+  border: 1px solid;
+  height: 26px;
+  font-weight: bold;
+  border-radius: 5px;
+  color: #42648F;
+  margin: 3px 0 0 177px;
+}
+
+.signup-completeButton {
+  margin: 50px 0 0 224px;
+  font-weight: bold;
+  border-radius: 5px;
+  color: #42648F;
+  background-color: white;
+  border: 2px solid;
+  font-size: 27px;
+}
+
+.signup-modal {
+  width: max-content;
+  margin: 0 auto;
+  position: relative;
+  bottom: 580px;
+}
