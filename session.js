@@ -4,23 +4,27 @@ module.exports = session = {
   sessionLength: 20,
 
   setSession(res, userId) {
-    res.cookie(this.sessionName, this.getRandomString());
-    this.memory.push({ id: userId, sid: this.getRandomString() });
+    const randomSession = this.getRandomString();
+
+    res.cookie(this.sessionName, randomSession);
+    this.memory.push({ id: userId, sid: randomSession });
   },
 
   getIdBySession(req) {
     const cookieString = req.headers.cookie;
 
-    if (!cookieString) {
-      return -1;
-    }
-
     const cookies = cookieString.split(/; /).map(v => v.split('='))
     const myCookie = cookies.find(cookie => cookie[0] === this.sessionName);
     const sid = myCookie[1];
 
-    return this.memory.find(v => v.sid === sid).id;
-  }
+    const userSession = this.memory.find(v => v.sid === sid);
+
+    if (!userSession) {
+      return null;
+    }
+
+    return userSession.id;
+  },
 
   getRandomString() {
     const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
