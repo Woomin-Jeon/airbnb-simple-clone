@@ -1,6 +1,9 @@
 .modal-body {
-  visibility: visible;
-  border: 1px solid black;
+  border: 2px solid black;
   width: max-content;
-  padding: 10px;
+  padding: 20px;
+  font-size: 18px;
+  background: white;
+  position: relative;
+  z-index: 3;
 }

@@ -4,6 +4,8 @@
   box-shadow: 5px 2px 20px 0px;
   padding: 20px;
   width: 300px; border-radius: 15px;
+  position: relative;
+  z-index: 2;
 }
 
 .signup-title {
@@ -54,4 +56,11 @@
   background-color: white;
   border: 2px solid;
   font-size: 27px;
+}
+
+.signup-modal {
+  width: max-content;
+  margin: 0 auto;
+  position: relative;
+  bottom: 580px;
 }
