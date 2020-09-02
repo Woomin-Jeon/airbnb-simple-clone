@@ -1,0 +1,6 @@
+.modal-body {
+  visibility: visible;
+  border: 1px solid black;
+  width: max-content;
+  padding: 10px;
+}
