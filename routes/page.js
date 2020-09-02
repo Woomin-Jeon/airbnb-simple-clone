@@ -17,6 +17,12 @@ router.get('/', async (req, res) => {
   res.render('index', { loggedIn: true, name: user.name });
 });
 
+router.get('/logout', (req, res) => {
+  session.removeSession(req, res);
+  
+  res.redirect('/');
+});
+
 router.get('/login', (req, res) => {
   res.render('login');
 });
