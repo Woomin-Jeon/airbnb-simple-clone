@@ -5,7 +5,8 @@ html
   body
     div BoostCamp Airbnb! #{name}
     if loggedIn
-      button(onclick='goToLoginPage()') 로그아웃  
+      form(action='/logout', method='get')
+        input(type='submit' value='로그아웃')
     else
       button(onclick='goToLoginPage()') 로그인
     button(onclick='goToSignupPage()') 회원가입
