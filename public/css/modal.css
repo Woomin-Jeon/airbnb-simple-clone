@@ -1,7 +1,12 @@
-.modal-body {
-  border: 2px solid black;
-  width: max-content;
+.modalBody {
+  display: none;
   padding: 20px;
-  font-size: 18px;
-  background: white;
+  border: 1px solid black;
+  background-color: white;
+  width: 400px;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 100px;
+  margin: 0 auto;
 }
