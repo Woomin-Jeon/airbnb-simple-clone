@@ -1,5 +1,5 @@
 module.exports = session = {
-  memory: [],
+  memory: new Map(),
   sessionName: 'AirBnB_sid',
   sessionLength: 20,
 
@@ -7,14 +7,13 @@ module.exports = session = {
     const randomSession = this._getRandomString();
 
     res.cookie(this.sessionName, randomSession);
-    this.memory.push({ id: userId, sid: randomSession });
+    this.memory.set(randomSession, userId);
   },
 
   removeSession(req, res) {
     const sid = this._getSidFromCookie(req);
-    const targetSidIndex = this.memory.findIndex(v => v.sid === sid);
 
-    this.memory.splice(targetSidIndex, 1);
+    this.memory.delete(sid);
     res.clearCookie(this.sessionName);
   },
 
@@ -25,13 +24,7 @@ module.exports = session = {
       return null;
     }
 
-    const userSession = this.memory.find(v => v.sid === sid);
-
-    if (!userSession) {
-      return null;
-    }
-
-    return userSession.id;
+    return this.memory.get(sid);
   },
 
   _getSidFromCookie(req) {
