@@ -1,19 +1,39 @@
 doctype html
-html
-  head
-    meta(charset='utf-8')
-  body
-    div BoostCamp Airbnb! #{name}
-    if loggedIn
-      form(action='/logout', method='get')
-        input(type='submit' value='로그아웃')
-    else
-      button(onclick='goToLoginPage()') 로그인
-    button(onclick='goToSignupPage()') 회원가입
-    script.
-      const goToSignupPage = () => {
-        window.location.href = '/signup';
-      }
-      const goToLoginPage = () => {
-        window.location.href = '/login';
-      }
+head
+  meta(charset=UTF-8)
+  link(href='./css/index.css' type='text/css' rel='stylesheet')
+  link(href='./css/modal.css' type='text/css' rel='stylesheet')
+body
+  div(class='modalBody' id='loginModal')
+  div(class='modalBody' id='signupModal')
+  div(class='header')
+    img(class='logo' src='./img/logo.png')
+    div(class='myButton' id='userButton')
+      button user information
+      div(class='userButtonOn' id='userButtonOn')
+        button(id='loginButton') 로그인
+        br
+        button(id='signupButton') 회원가입
+  div(class='category')
+    button(class='categoryItem') 숙소
+    button(class='categoryItem') 장기숙박
+    button(class='categoryItem') 체험
+    button(class='categoryItem') 온라인 체험
+  div(class='reservation')
+    div(class='reservationItem')
+      div 위치
+      input(type='text')
+    div(class='reservationItem')
+      div 체크인
+      input(type='date')
+    div(class='reservationItem')
+      div 체크아웃
+      input(type='date')
+    div(class='reservationItem')
+      div 인원
+      input(type='number' step='1' min='1' max='6' value='1')    
+    button(id='searchButton') 검색
+  
+  script(type='module' src='./js/index.js')
+  script(type='module' src='./js/loginModal.js')
+  script(type='module' src='./js/signupModal.js')
