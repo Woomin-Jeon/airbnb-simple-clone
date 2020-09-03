@@ -4,8 +4,8 @@ html
     meta(charset='utf-8')
     link(type='text/css' rel='stylesheet' href='./css/signup.css')
   body
-    div(class='signup-title') 회원가입
-    div(class='signup-body')
+    div(class='modalBody')
+      h1 회원가입
       form(action='/signup', method='post')
         div
           div(class='signup-elementTitle') 아이디
@@ -19,9 +19,3 @@ html
           div(class='signup-elementTitle') 이름
           input(class='signup-input' name='name' id="name-input" type="text" placeholder="이름을 입력해주세요.")
         input(class='signup-completeButton' id="next-button" type='submit' value='완료')
-    div(class='signup-modal')
-      if idDuplication
-        include ./modals/idDuplication.pug
-    div(class='signup-modal')
-      if pwNotMatched
-        include ./modals/pwNotMatched.pug

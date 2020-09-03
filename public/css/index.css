@@ -1,0 +1,38 @@
+.header {
+  display: flex;
+  padding: 30px 60px;
+}
+
+.logo {
+  width: 50px;
+  margin-right: 750px;
+}
+
+.myButton {
+  margin-left: 750px;
+}
+
+.userButtonOn {
+  display: none;
+  position: fixed;
+}
+
+.category {
+  padding: 50px;
+}
+
+.categoryItem {
+  margin: 0 20px;
+  background: white;
+  border: 1px;
+  font-size: 20px;
+}
+
+.reservation {
+  display: flex;
+  padding: 10px 50px
+}
+
+.reservationItem {
+  margin: 0 20px;
+}

@@ -1,20 +1,30 @@
-module.exports = session = {
-  memory: [],
+module.exports = (req, res, next) => {
+  req.session = session;
+  res.session = session;
+  next();
+}
+
+const session = {
+  memory: new Map(),
   sessionName: 'AirBnB_sid',
   sessionLength: 20,
+  expireSeconds: 90_000,
 
   setSession(res, userId) {
-    const randomSession = this._getRandomString();
+    const randomSessionId = this._getRandomString();
 
-    res.cookie(this.sessionName, randomSession);
-    this.memory.push({ id: userId, sid: randomSession });
+    res.cookie(this.sessionName, randomSessionId);
+    this.memory.set(randomSessionId, userId);
+    
+    setTimeout((sid) => {
+      this._expireSession(sid);
+    }, this.expireSeconds, randomSessionId);
   },
 
   removeSession(req, res) {
     const sid = this._getSidFromCookie(req);
-    const targetSidIndex = this.memory.findIndex(v => v.sid === sid);
 
-    this.memory.splice(targetSidIndex, 1);
+    this.memory.delete(sid);
     res.clearCookie(this.sessionName);
   },
 
@@ -25,13 +35,11 @@ module.exports = session = {
       return null;
     }
 
-    const userSession = this.memory.find(v => v.sid === sid);
+    return this.memory.get(sid);
+  },
 
-    if (!userSession) {
-      return null;
-    }
-
-    return userSession.id;
+  _expireSession(sid) {
+    this.memory.delete(sid);
   },
 
   _getSidFromCookie(req) {

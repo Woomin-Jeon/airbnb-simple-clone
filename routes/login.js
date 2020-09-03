@@ -1,10 +1,9 @@
 const express = require('express');
 const router = express.Router();
 const useSHA256 = require('../util/encryption');
-const session = require('../session');
 
 router.get('/', (req, res) => {
-  res.render('login');
+  res.render('index', { loginModal: true });
 });
 
 router.post('/', async (req, res) => {
@@ -14,16 +13,16 @@ router.post('/', async (req, res) => {
   const user = await DB.findUserById(id);
 
   if (!user) {
-    res.redirect('/login');
+    res.render('index', { loginModal: true });
     return;
   }
 
   if (user.pw !== encryptedPassword) {
-    res.redirect('/login');
+    res.render('index', { loginModal: true });
     return;
   }
 
-  session.setSession(res, user.id);
+  res.session.setSession(res, user.id);
   res.redirect('/');
 });
 

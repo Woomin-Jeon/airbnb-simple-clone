@@ -1,10 +1,9 @@
 const express = require('express');
 const router = express.Router();
 const DB = require('../database/util');
-const session = require('../session');
 
 router.get('/', async (req, res) => {
-  const userId = session.getIdBySession(req);
+  const userId = req.session.getIdBySession(req);
 
   if (!userId) {
     res.render('index', { loggedIn: false });
