@@ -4,8 +4,10 @@ head
   link(href='./css/index.css' type='text/css' rel='stylesheet')
   link(href='./css/modal.css' type='text/css' rel='stylesheet')
 body
-  div(class='modalBody' id='loginModal')
-  div(class='modalBody' id='signupModal')
+  if loginModal
+    include ./login.pug
+  if signupModal
+    include ./signup.pug
   div(class='header')
     img(class='logo' src='./img/logo.png')
     div(class='myButton' id='userButton')
@@ -35,5 +37,3 @@ body
     button(id='searchButton') 검색
   
   script(type='module' src='./js/index.js')
-  script(type='module' src='./js/loginModal.js')
-  script(type='module' src='./js/signupModal.js')
