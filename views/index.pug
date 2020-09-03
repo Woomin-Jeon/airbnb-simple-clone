@@ -10,12 +10,17 @@ body
     include ./signup.pug
   div(class='header')
     img(class='logo' src='./img/logo.png')
+    if loggedIn
+      div Hello, #{name}!
     div(class='myButton' id='userButton')
       button user information
       div(class='userButtonOn' id='userButtonOn')
-        button(id='loginButton') 로그인
+        if loggedIn
+          a(href='logout') 로그아웃
+        else
+          a(href='login') 로그인
         br
-        button(id='signupButton') 회원가입
+        a(href='signup') 회원가입
   div(class='category')
     button(class='categoryItem') 숙소
     button(class='categoryItem') 장기숙박
