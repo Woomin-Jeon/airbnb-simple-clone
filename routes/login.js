@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
 const useSHA256 = require('../util/encryption');
-const session = require('../session');
 
 router.get('/', (req, res) => {
   res.render('login');
@@ -23,7 +22,7 @@ router.post('/', async (req, res) => {
     return;
   }
 
-  session.setSession(res, user.id);
+  res.session.setSession(res, user.id);
   res.redirect('/');
 });
 

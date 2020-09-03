@@ -1,4 +1,10 @@
-module.exports = session = {
+module.exports = (req, res, next) => {
+  req.session = session;
+  res.session = session;
+  next();
+}
+
+const session = {
   memory: new Map(),
   sessionName: 'AirBnB_sid',
   sessionLength: 20,
@@ -11,12 +17,8 @@ module.exports = session = {
     this.memory.set(randomSessionId, userId);
     
     setTimeout((sid) => {
-      this.expireSession(sid);
+      this._expireSession(sid);
     }, this.expireSeconds, randomSessionId);
-  },
-
-  expireSession(sid) {
-    this.memory.delete(sid);
   },
 
   removeSession(req, res) {
@@ -34,6 +36,10 @@ module.exports = session = {
     }
 
     return this.memory.get(sid);
+  },
+
+  _expireSession(sid) {
+    this.memory.delete(sid);
   },
 
   _getSidFromCookie(req) {
