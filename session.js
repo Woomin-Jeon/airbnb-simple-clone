@@ -2,12 +2,21 @@ module.exports = session = {
   memory: new Map(),
   sessionName: 'AirBnB_sid',
   sessionLength: 20,
+  expireSeconds: 90_000,
 
   setSession(res, userId) {
-    const randomSession = this._getRandomString();
+    const randomSessionId = this._getRandomString();
 
-    res.cookie(this.sessionName, randomSession);
-    this.memory.set(randomSession, userId);
+    res.cookie(this.sessionName, randomSessionId);
+    this.memory.set(randomSessionId, userId);
+    
+    setTimeout((sid) => {
+      this.expireSession(sid);
+    }, this.expireSeconds, randomSessionId);
+  },
+
+  expireSession(sid) {
+    this.memory.delete(sid);
   },
 
   removeSession(req, res) {
