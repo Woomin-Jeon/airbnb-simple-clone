@@ -3,7 +3,7 @@ const router = express.Router();
 const DB = require('../database/util');
 
 router.get('/', (req, res) => {
-  res.render('signup', { idDuplication: false });
+  res.render('index', { signupModal: true });
 });
 
 router.post('/', async (req, res) => {
@@ -12,12 +12,12 @@ router.post('/', async (req, res) => {
   const existingUser = await DB.findUserById(user.id);
 
   if (existingUser) {
-    res.render('signup', { idDuplication: true });
+    res.render('index', { signupModal: true });
     return;
   }
 
   if (user.pw !== pwCheck) {
-    res.render('signup', { pwNotMatched: true });
+    res.render('index', { signupModal: true });
     return;
   }
 
