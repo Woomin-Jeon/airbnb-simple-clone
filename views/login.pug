@@ -2,15 +2,15 @@ doctype html
 html
   head
     meta(charset='utf-8')
-    link(type='text/css' rel='stylesheet' href='./css/signup.css')
+    link(type='text/css' rel='stylesheet' href='./css/sign.css')
   body
     div(class='modalBody')
       h1 로그인
       form(action='/login', method='post')
         div
-          div(class='signup-elementTitle') 아이디
-          input(class='signup-input' name='id' id="id-input" type='text' placeholder="아이디를 입력 해주세요")
+          div(class='sign-elementTitle') 아이디
+          input(class='sign-input' name='id' id="id-input" type='text' placeholder="아이디를 입력 해주세요")
         div
-          div(class='signup-elementTitle') 비밀번호
-          input(class='signup-input' name='pw' id="pw-input1" type='password' placeholder="비밀번호를 입력 해주세요.")
-        input(class='signup-completeButton' id="next-button" type='submit' value='로그인')
+          div(class='sign-elementTitle') 비밀번호
+          input(class='sign-input' name='pw' id="pw-input1" type='password' placeholder="비밀번호를 입력 해주세요.")
+        input(class='sign-completeButton' id="next-button" type='submit' value='로그인')

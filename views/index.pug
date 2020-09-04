@@ -8,7 +8,7 @@ body
     include ./login.pug
   if signupModal
     include ./signup.pug
-  div(class='header')
+  header(class='header')
     img(class='logo' src='./img/logo.png')
     if loggedIn
       div Hello, #{name}!
@@ -21,12 +21,13 @@ body
           a(href='login') 로그인
         br
         a(href='signup') 회원가입
-  div(class='category')
-    button(class='categoryItem') 숙소
-    button(class='categoryItem') 장기숙박
-    button(class='categoryItem') 체험
-    button(class='categoryItem') 온라인 체험
-  div(class='reservation')
+  nav
+    ul(class='category')
+      li(class='categoryItem') 숙소
+      li(class='categoryItem') 장기숙박
+      li(class='categoryItem') 체험
+      li(class='categoryItem') 온라인 체험
+  section(class='reservation')
     div(class='reservationItem')
       div 위치
       input(type='text')
