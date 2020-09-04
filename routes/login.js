@@ -12,13 +12,11 @@ router.post('/', async (req, res) => {
 
   const user = await DB.findUserById(id);
 
-  if (!user) {
-    res.render('index', { loginModal: true });
-    return;
-  }
-
-  if (user.pw !== encryptedPassword) {
-    res.render('index', { loginModal: true });
+  if (!user || user.pw !== encryptedPassword) {
+    res.render('index', {
+      loginModal: true,
+      popup: '아이디 혹은 비밀번호가 일치하지 않습니다.'
+    });
     return;
   }
 
