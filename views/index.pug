@@ -4,13 +4,8 @@ head
   link(href='./css/index.css' type='text/css' rel='stylesheet')
   link(href='./css/modal.css' type='text/css' rel='stylesheet')
 body
-  if popup
-    script.
-      alert(!{JSON.stringify(popup)});
-  if loginModal
-    include ./login.pug
-  if signupModal
-    include ./signup.pug
+  include ./login.pug
+  include ./signup.pug
   header(class='header')
     img(class='logo' src='./img/logo.png')
     if loggedIn
@@ -18,12 +13,9 @@ body
     div(class='myButton' id='userButton')
       button user information
       div(class='userButtonOn' id='userButtonOn')
-        if loggedIn
-          a(href='logout') 로그아웃
-        else
-          a(href='login') 로그인
-        br
-        a(href='signup') 회원가입
+        button(class='loginButton' id='loginButton') 로그인
+        button(class='logoutButton' id='logoutButton') 로그아웃
+        button(id='signupButton') 회원가입
   nav
     ul(class='category')
       li(class='categoryItem') 숙소
@@ -46,3 +38,29 @@ body
     button(id='searchButton') 검색
   
   script(type='module' src='./js/index.js')
+  if popup
+    script.
+      alert(!{JSON.stringify(popup)});
+  if redirect
+    script.
+      window.location.href = !{JSON.stringify(redirect)};
+  if loginModal
+    script.
+      const $loginModal = document.getElementById('loginModal');
+      $loginModal.style.display = 'block';
+  if signupModal
+    script.
+      const $signupModal = document.getElementById('signupModal');
+      $signupModal.style.display = 'block';
+  if loggedIn
+    script.
+      $loginButton = document.getElementById('loginButton');
+      $logoutButton = document.getElementById('logoutButton');
+      $loginButton.style.display = 'none';
+      $logoutButton.style.display = 'block';
+  if !loggedIn
+    script.
+      $loginButton = document.getElementById('loginButton');
+      $logoutButton = document.getElementById('logoutButton');
+      $loginButton.style.display = 'block';
+      $logoutButton.style.display = 'none';

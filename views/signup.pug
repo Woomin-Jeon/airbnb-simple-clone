@@ -4,7 +4,7 @@ html
     meta(charset='utf-8')
     link(type='text/css' rel='stylesheet' href='./css/sign.css')
   body
-    div(class='modalBody')
+    div(class='modalBody' id='signupModal')
       h1 회원가입
       form(action='/signup', method='post')
         div
@@ -19,3 +19,4 @@ html
           div(class='sign-elementTitle') 이름
           input(class='sign-input' name='name' id="name-input" type="text" placeholder="이름을 입력해주세요.")
         input(class='sign-completeButton' id="next-button" type='submit' value='완료')
+    script(type='module' src='./js/sign.js')

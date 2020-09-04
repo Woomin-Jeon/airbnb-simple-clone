@@ -45,3 +45,11 @@
 .reservationItem {
   margin: 0 20px;
 }
+
+.loginButton {
+  display: block;
+}
+
+.logoutButton {
+  display: none;
+}
