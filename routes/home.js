@@ -14,9 +14,7 @@ router.get('/', async (req, res) => {
 
   const user = await DB.findUserById(userId);
 
-  state.name = user.name;
-  state.loggedIn = true;
-  const { loggedIn, name } = state;
+  const { loggedIn, name } = state.setName(user.name).setLoggedIn(true);
   res.render('index', { loggedIn, name });
 });
 
