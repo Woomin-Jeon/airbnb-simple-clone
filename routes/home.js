@@ -7,7 +7,10 @@ router.get('/', async (req, res) => {
   const userId = req.session.getIdBySession(req);
 
   if (!userId) {
-    const { loginModal, loggedIn } = state;
+    const { loginModal, loggedIn } = state
+      .setLoginModal(false)
+      .setLoggedIn(false);
+
     res.render('index', { loginModal, loggedIn });
     return;
   }

@@ -1,23 +1,14 @@
 const express = require('express');
 const router = express.Router();
-const useSHA256 = require('../util/encryption');
+const DB = require('../database/util');
 const state = require('../store');
+const { loginValidator } = require('../middlewares/validators');
+
+router.post('/', loginValidator());
 
 router.post('/', async (req, res) => {
   const { id, pw } = req.body;
-  const encryptedPassword = useSHA256(pw);
-
   const user = await DB.findUserById(id);
-
-  if (!user || user.pw !== encryptedPassword) {
-    const { loginModal, redirect, popup } = state
-      .setLoginModal(true)
-      .setRedirect('/')
-      .setPopup('아이디 혹은 비밀번호가 일치하지 않습니다.');
-
-    res.render('index', { loginModal, redirect, popup });
-    return;
-  }
 
   const { loginModal, redirect, popup } = state
     .setLoginModal(false)
