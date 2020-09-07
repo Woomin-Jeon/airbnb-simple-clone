@@ -10,11 +10,16 @@
 
 .myButton {
   margin-left: 750px;
+  border: 2px solid;
+  border-radius: 35px;
+  height: 35px;
+  padding: 6px;
+  cursor: pointer;
 }
 
 .userButtonOn {
   display: none;
-  position: fixed;
+  position: absolute;
 }
 
 .category {
@@ -52,4 +57,16 @@
 
 .logoutButton {
   display: none;
+}
+
+.userInfo {
+  width: 34px;
+  border: 1px solid;
+  border-radius: 30px;
+  margin-right: 5px;
+}
+
+.burger {
+  width: 22px;
+  margin: 0 8px 8px 12px;
 }
