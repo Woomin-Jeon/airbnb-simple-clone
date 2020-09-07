@@ -1,12 +1,12 @@
-.modalBody {
+.modal-body {
   display: none;
   position: fixed;
-  border: 2px solid;
-  padding: 35px;
+  border: 1px solid gray;
+  border-radius: 12px;
   background: white;
-  width: 300px;
+  width: 600px;
   left: 0;
   right: 0;
   margin: 0 auto;
-  top: 200px;
+  top: 100px;
 }

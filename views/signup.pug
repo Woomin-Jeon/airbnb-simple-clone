@@ -4,19 +4,30 @@ html
     meta(charset='utf-8')
     link(type='text/css' rel='stylesheet' href='./css/sign.css')
   body
-    div(class='modalBody' id='signupModal')
-      h1 회원가입
+    div(class='modal-body' id='signupModal')
+      div(class='sign-title') 회원가입
       form(action='/signup', method='post')
         div
-          div(class='sign-elementTitle') 아이디
-          input(class='sign-input' name='id' id="id-input" type='text' placeholder="아이디를 입력 해주세요")
-        div
-          div(class='sign-elementTitle') 비밀번호
-          input(class='sign-input' name='pw' id="pw-input1" type='password' placeholder="비밀번호를 입력 해주세요.")
-          br
-          input(class='sign-input' name='pwCheck' id="pw-input2" type='password' placeholder="비밀번호를 다시 입력 해주세요.")
-        div
-          div(class='sign-elementTitle') 이름
-          input(class='sign-input' name='name' id="name-input" type="text" placeholder="이름을 입력해주세요.")
-        input(class='sign-completeButton' id="next-button" type='submit' value='완료')
+          input(class='sign-input' name='id' id="id-input" type='text' placeholder="이메일 주소")
+          input(class='sign-input' name='name' id="name-input" type="text" placeholder="이름 (예: 홍길동)")
+          input(class='sign-input' name='pw' id="pw-input1" type='password' placeholder="비밀번호 설정하기")
+          input(class='sign-input' name='pwCheck' id="pw-input2" type='password' placeholder="비밀번호 확인하기")
+        div(class='sign-birth') 생일
+          div(class='sign-text') 만 18세 이상의 성인만 회원으로 가입할 수 있습니다. 생일은 다른 에어비앤비 이용자에게 공개되지 않습니다.
+          select(class='sign-birth-month')
+            option 월
+            - for(let i = 1; i <= 12; i += 1)
+              option #{i}월
+          select(class='sign-birth-day')
+            option 일
+            - for(let i = 1; i <= 31; i += 1)
+              option #{i}일
+          select(class='sign-birth-year')
+            option 년
+            - for(let i = 2020; i >= 1920; i -= 1)
+              option #{i}년
+          div(class='sign-text') 에어비앤비의 회원 전용 할인, 추천 여행 정보, 프로모션 및 정책 변경사항을 이메일로 보내드립니다. 계정 관리의 환경설정 또는 프로모션 알림에서 언제든지 메시지 수신을 거부할 수 있습니다.
+          input(type='checkbox')
+          span(class='sign-text') 에어비앤비에서 보내는 마케팅 메시지를 받고 싶지 않습니다.
+        input(class='sign-completeButton' id="next-button" type='submit' value='가입하기')
     script(type='module' src='./js/sign.js')
