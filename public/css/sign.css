@@ -1,3 +1,28 @@
+.modal-body {
+  display: none;
+  position: fixed;
+  border: 1px solid gray;
+  border-radius: 12px;
+  background: white;
+  width: 600px;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  top: 100px;
+}
+
+.modal-close {
+  background: white;
+  border: none;
+  margin: 0px 0px 0 0;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.modal-close:hover {
+  background: #f0f0f0;
+}
+
 .sign-header {
   text-align: left;
   font-size: 20px;
