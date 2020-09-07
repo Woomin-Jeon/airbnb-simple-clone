@@ -10,11 +10,12 @@
 
 .myButton {
   margin-left: 750px;
-}
-
-.userButtonOn {
-  display: none;
-  position: fixed;
+  border: 2px solid;
+  border-radius: 35px;
+  height: 35px;
+  padding: 6px;
+  cursor: pointer;
+  position: relative;
 }
 
 .category {
@@ -44,4 +45,51 @@
 
 .reservationItem {
   margin: 0 20px;
+}
+
+.loginButton {
+  display: block;
+}
+
+.logoutButton {
+  display: none;
+}
+
+.userInfo {
+  width: 34px;
+  border: 1px solid;
+  border-radius: 30px;
+  margin-right: 5px;
+}
+
+.burger {
+  width: 22px;
+  margin: 0 8px 8px 12px;
+}
+
+.userButtonOn {
+  display: none;
+  position: absolute;
+  margin-top: 20px;
+  width: 250px;
+  border: 1px solid;
+  box-sizing: border-box;
+  border-radius: 15px;
+  right: 0px;
+  padding: 25px 0;
+}
+
+.userButton {
+  font-size: 20px;
+  background-color: white;
+  border: none;
+  cursor: pointer;
+  width: 248px;
+  text-align: left;
+  padding: 10px 30px;
+}
+
+.userButton:hover {
+  background-color: #fbf1f1;
+  border: none
 }

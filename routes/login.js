@@ -1,29 +1,22 @@
 const express = require('express');
 const router = express.Router();
-const useSHA256 = require('../util/encryption');
+const DB = require('../database/util');
+const state = require('../store');
+const { loginValidator } = require('../middlewares/validators');
 
-router.get('/', (req, res) => {
-  res.render('index', { loginModal: true });
-});
+router.post('/', loginValidator());
 
 router.post('/', async (req, res) => {
   const { id, pw } = req.body;
-  const encryptedPassword = useSHA256(pw);
-
   const user = await DB.findUserById(id);
 
-  if (!user) {
-    res.render('index', { loginModal: true });
-    return;
-  }
-
-  if (user.pw !== encryptedPassword) {
-    res.render('index', { loginModal: true });
-    return;
-  }
-
+  const { loginModal, redirect, popup } = state
+    .setLoginModal(false)
+    .setRedirect('/')
+    .setPopup('로그인 성공');
+  
   res.session.setSession(res, user.id);
-  res.redirect('/');
+  res.render('index', { loginModal, popup, redirect });
 });
 
 module.exports = router;
