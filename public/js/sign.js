@@ -6,24 +6,16 @@ const $signupModal = document.getElementById('signupModal');
 const $signupClose = document.getElementById('signupClose');
 const $loginClose = document.getElementById('loginClose');
 
-$loginClose.addEventListener('click', () => {
-  $loginModal.style.display = 'none';
-});
+const move = (path) => window.location.href = path;
+const show = (dom) => dom.style.display = 'block';
+const hidden = (dom) => dom.style.display = 'none';
+const hiddenAndShow = (hiddenDom) => (showDom) => {
+  hidden(hiddenDom);
+  show(showDom);
+};
 
-$signupClose.addEventListener('click', () => {
-  $signupModal.style.display = 'none';
-});
-
-$loginButton.addEventListener('click', () => {
-  $loginModal.style.display = 'block';
-  $signupModal.style.display = 'none';
-});
-
-$logoutButton.addEventListener('click', () => {
-  window.location.href = '/logout';
-});
-
-$signupButton.addEventListener('click', () => {
-  $signupModal.style.display = 'block';
-  $loginModal.style.display = 'none';
-});
+$loginButton.addEventListener('click', () => hiddenAndShow($signupModal)($loginModal));
+$signupButton.addEventListener('click', () => hiddenAndShow($loginModal)($signupModal));
+$loginClose.addEventListener('click', () => hidden($loginModal));
+$signupClose.addEventListener('click', () => hidden($signupModal));
+$logoutButton.addEventListener('click', () => move('/logout'));
