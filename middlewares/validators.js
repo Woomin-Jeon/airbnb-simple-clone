@@ -4,11 +4,12 @@ const state = require('../store');
 
 const signupValidator = () => {
   const responseError = (res, statement) => {
-    const { signupModal, popup } = state
+    const { signupModal, redirect, popup } = state
       .setSignupModal(true)
+      .setRedirect('/')
       .setPopup(`${statement}`);
 
-    res.render('index', { signupModal, popup });
+    res.render('index', { signupModal, redirect ,popup });
   }
 
   return async (req, res, next) => {
