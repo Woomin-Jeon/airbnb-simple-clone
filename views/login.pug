@@ -5,7 +5,9 @@ html
     link(type='text/css' rel='stylesheet' href='./css/sign.css')
   body
     div(class='modal-body' id='loginModal')
-      div(class='sign-title') 로그인
+      div(class='sign-header')
+        button(class='modal-close') X
+        span(class='sign-title') 로그인
       form(action='/login', method='post')
         div
           input(class='sign-input' name='id' id="idInput" type='text' placeholder="이메일 주소")

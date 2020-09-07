@@ -10,3 +10,15 @@
   margin: 0 auto;
   top: 100px;
 }
+
+.modal-close {
+  background: white;
+  border: none;
+  margin: 0px 0px 0 0;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.modal-close:hover {
+  background: #f0f0f0;
+}

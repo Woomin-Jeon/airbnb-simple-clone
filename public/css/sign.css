@@ -1,9 +1,13 @@
-.sign-title {
-  text-align: center;
+.sign-header {
+  text-align: left;
   font-size: 20px;
   font-weight: bold;
-  padding: 20px;
+  padding: 20px 28px;
   border-bottom: 1px solid #dfdcdc;
+}
+
+.sign-title {
+  margin-left: 210px;
 }
 
 .sign-input {
