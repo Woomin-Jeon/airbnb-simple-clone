@@ -22,8 +22,8 @@ const actions = {
   setPopup(message) {
     this.popup = message;
     return this;
-  }
-}
+  },
+};
 
 const store = {
   loginModal: false,

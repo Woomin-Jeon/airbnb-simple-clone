@@ -6,45 +6,17 @@
 .logo {
   width: 50px;
   margin-right: 750px;
+  margin-left: 15px;
 }
 
 .myButton {
-  margin-left: 750px;
-  border: 2px solid;
-  border-radius: 35px;
-  height: 35px;
-  padding: 6px;
-  cursor: pointer;
   position: relative;
-}
-
-.category {
-  display: flex;
-  padding: 50px;
-}
-
-.categoryItem {
-  list-style: none;
-  margin: 0 20px;
-  background: white;
-  border: 1px;
-  font-size: 20px;
-}
-
-.categoryItem:hover {
+  margin-left: 710px;
+  padding: 6px;
+  height: 35px;
+  border-radius: 35px;
+  box-shadow: 0px 1px 3px 1px;
   cursor: pointer;
-  color: blue;
-  font-weight: bold;
-  text-decoration: underline;
-}
-
-.reservation {
-  display: flex;
-  padding: 10px 50px
-}
-
-.reservationItem {
-  margin: 0 20px;
 }
 
 .loginButton {
@@ -57,9 +29,9 @@
 
 .userInfo {
   width: 34px;
+  margin-right: 5px;
   border: 1px solid;
   border-radius: 30px;
-  margin-right: 5px;
 }
 
 .burger {
@@ -71,22 +43,22 @@
   display: none;
   position: absolute;
   margin-top: 20px;
+  padding: 25px 0;
   width: 250px;
-  border: 1px solid;
+  box-shadow: 0px 1px 3px 1px;
   box-sizing: border-box;
   border-radius: 15px;
   right: 0px;
-  padding: 25px 0;
 }
 
 .userButton {
+  width: 248px;
+  padding: 10px 30px;
+  border: none;
   font-size: 20px;
   background-color: white;
-  border: none;
-  cursor: pointer;
-  width: 248px;
   text-align: left;
-  padding: 10px 30px;
+  cursor: pointer;
 }
 
 .userButton:hover {

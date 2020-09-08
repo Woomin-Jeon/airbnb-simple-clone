@@ -1,6 +1,9 @@
 const express = require('express');
+
 const router = express.Router();
+
 const DB = require('../database/util');
+
 const state = require('../store');
 
 router.get('/', async (req, res) => {

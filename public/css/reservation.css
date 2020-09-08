@@ -1,0 +1,96 @@
+.category {
+  display: flex;
+  padding: 20px 60px;
+}
+
+.categoryItem {
+  font-size: 20px;
+  margin: 0 20px;
+  padding: 15px 0;
+  background: white;
+  list-style: none;
+}
+
+.category-location {
+  border-bottom: 3px solid black;
+}
+
+.categoryItem:hover {
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.reservation-location {
+  display: flex;
+  padding: 10px 50px
+}
+
+.reservation-activity {
+  display: none;
+  padding: 10px 50px
+}
+
+.reservationItem {
+  position: relative;
+  padding: 13px;
+  box-sizing: border-box;
+  box-shadow: 0px 1px 2px 0px;
+}
+
+.reservation-text {
+  font-weight: bold;
+  margin-left: 10px;
+}
+
+.reservation-input {
+  width: 270px;
+  height: 40px;
+  margin-left: 10px;
+  border: none;
+  cursor: pointer;
+}
+
+.reservation-input-location {
+  width: 450px;
+  height: 40px;
+  margin-left: 10px;
+  border: none;
+  cursor: pointer;
+}
+
+.reservation-input-count {
+  width: 100px;
+  height: 40px;
+  margin-left: 10px;
+  border: none;
+  cursor: pointer;
+}
+
+.location {
+  width: 500px;
+  margin-left: 25px;
+  border-radius: 20px 0 0 20px;
+}
+
+.check-in, .check-out {
+  width: 300px;
+}
+
+.user-count, .activity {
+  width: 500px;
+  border-radius: 0 20px 20px 0;
+}
+
+.search-button {
+  position: absolute;
+  width: 120px;
+  height: 65px;
+  left: 366px;
+  bottom: 13px;
+  font-size: 24px;
+  font-weight: bold;
+  color: white;
+  background: #e70909;
+  border: none;
+  border-radius: 12px;
+}

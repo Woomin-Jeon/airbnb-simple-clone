@@ -9,8 +9,8 @@ const signupValidator = () => {
       .setRedirect('/')
       .setPopup(`${statement}`);
 
-    res.render('index', { signupModal, redirect ,popup });
-  }
+    res.render('index', { signupModal, redirect, popup });
+  };
 
   return async (req, res, next) => {
     const { pwCheck, ...user } = req.body;
@@ -32,27 +32,25 @@ const signupValidator = () => {
     }
 
     next();
+  };
+};
+
+const loginValidator = () => async (req, res, next) => {
+  const { id, pw } = req.body;
+  const encryptedPassword = useSHA256(pw);
+  const user = await DB.findUserById(id);
+
+  if (!user || user.pw !== encryptedPassword) {
+    const { loginModal, redirect, popup } = state
+      .setLoginModal(true)
+      .setRedirect('/')
+      .setPopup('아이디 혹은 비밀번호가 일치하지 않습니다.');
+
+    res.render('index', { loginModal, redirect, popup });
+    return;
   }
-}
 
-const loginValidator = () => {
-  return async (req, res, next) => {
-    const { id, pw } = req.body;
-    const encryptedPassword = useSHA256(pw);
-    const user = await DB.findUserById(id);
-
-    if (!user || user.pw !== encryptedPassword) {
-      const { loginModal, redirect, popup } = state
-        .setLoginModal(true)
-        .setRedirect('/')
-        .setPopup('아이디 혹은 비밀번호가 일치하지 않습니다.');
-
-      res.render('index', { loginModal, redirect, popup });
-      return;
-    }
-
-    next();
-  }
-}
+  next();
+};
 
 module.exports = { loginValidator, signupValidator };
