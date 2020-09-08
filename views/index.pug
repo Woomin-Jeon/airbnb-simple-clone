@@ -3,88 +3,20 @@ head
   meta(charset=UTF-8)
   link(href='./css/reset.css' type='text/css' rel='stylesheet')
   link(href='./css/index.css' type='text/css' rel='stylesheet')
+  link(href='./css/sign.css' type='text/css' rel='stylesheet')
   link(href='./css/dark.css' type='text/css' rel='stylesheet')
 body
-  include ./dark.pug
-  include ./login.pug
-  include ./signup.pug
-  header(class='header')
-    img(class='logo' src='./img/logo.png')
-    div(class='myButton' id='userButton')
-      img(class='burger' src='./img/burger.png')
-      img(class='userInfo' src='./img/user-button.png')
-      div(class='userButtonOn' id='userButtonOn')
-        button(class='userButton' id='signupButton') 회원가입
-        button(class='loginButton userButton' id='loginButton') 로그인
-        button(class='logoutButton userButton' id='logoutButton') 로그아웃
-  nav
-    ul(class='category')
-      li(class='categoryItem category-location' id='category-location') 숙소
-      li(class='categoryItem category-activity' id='category-activity') 체험
-      li(class='categoryItem category-longterm' id='category-longterm') 장기숙박
-      li(class='categoryItem category-online' id='category-online') 온라인 체험
-  section(class='reservation-activity' id='reservation-activity')
-    div(class='reservationItem location')
-      div(class='reservation-text') 위치
-      input(class='reservation-input-location' type='text')
-    div(class='reservationItem activity')
-      div(class='reservation-text') 날짜
-      input(class='reservation-input-count' type='date')
-      button(class='search-button' id='searchButton') 검색
-  section(class='reservation-location' id='reservation-location')
-    div(class='reservationItem location')
-      div(class='reservation-text') 위치
-      input(class='reservation-input-location' type='text')
-    div(class='reservationItem check-in')
-      div(class='reservation-text') 체크인
-      input(class='reservation-input' type='date')
-    div(class='reservationItem check-out')
-      div(class='reservation-text') 체크아웃
-      input(class='reservation-input' type='date')
-    div(class='reservationItem user-count')
-      div(class='reservation-text') 인원
-      input(class='reservation-input-count' type='number' step='1' min='1' max='6' value='1')
-      button(class='search-button' id='searchButton') 검색
-  section(class='statement')
-    div 이제 가까운 곳에서 소중한 인연을 찾아보세요.
-  section(class='kinds')
-    div(class='kind')
-      img(class='kind-img' src='./img/online-activity.webp')
-      div(class='kind-title') 온라인 체험
-      div(class='kind-text') 세계 각지의 호스트가 진행하고 모두 함께 즐기는 독특한 액티비티
-    div(class='kind')
-      img(class='kind-img' src='./img/specific-space.webp')
-      div(class='kind-title') 독특한 공간
-      div(class='kind-text') 단순한 숙소 이상의 특별함이 담긴 공간
-    div(class='kind')
-      img(class='kind-img' src='./img/whole-house.webp')
-      div(class='kind-title') 집 전체
-      div(class='kind-text') 일행만을 위한 편안한 공간에서 친구 및 가족과 오붓한 시간을 보내세요
+  include ./util/dark.pug
+  include ./modal/login.pug
+  include ./modal/signup.pug
+
+  include ./util/header.pug
+  include ./main/navigation.pug
+  include ./main/reservationActivity.pug
+  include ./main/reservationLocation.pug
+  include ./main/statement.pug
+  include ./main/kinds.pug
 
   script(type='module' src='./js/index.js')
-  if popup
-    script.
-      alert(!{JSON.stringify(popup)});
-  if redirect
-    script.
-      window.location.href = !{JSON.stringify(redirect)};
-  if loginModal
-    script.
-      const $loginModal = document.getElementById('loginModal');
-      $loginModal.style.display = 'block';
-  if signupModal
-    script.
-      const $signupModal = document.getElementById('signupModal');
-      $signupModal.style.display = 'block';
-  if loggedIn
-    script.
-      $loginButton = document.getElementById('loginButton');
-      $logoutButton = document.getElementById('logoutButton');
-      $loginButton.style.display = 'none';
-      $logoutButton.style.display = 'block';
-  if !loggedIn
-    script.
-      $loginButton = document.getElementById('loginButton');
-      $logoutButton = document.getElementById('logoutButton');
-      $loginButton.style.display = 'block';
-      $logoutButton.style.display = 'none';
+  script(type='module' src='./js/sign.js')
+  include ./main/condition.pug
