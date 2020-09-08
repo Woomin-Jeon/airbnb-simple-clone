@@ -1,4 +1,5 @@
 const express = require('express');
+
 const app = express();
 
 const session = require('./middlewares/session');
@@ -14,7 +15,7 @@ app.use(express.json());
 
 app.use(session);
 
-app.use('/', require('./routes/'));
+app.use('/', require('./routes'));
 
 app.listen(port, () => {
   console.log(`server is running on port ${port}...`);

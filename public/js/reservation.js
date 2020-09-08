@@ -6,11 +6,21 @@ const $categoryActivity = document.getElementById('category-activity');
 const $reservationActivity = document.getElementById('reservation-activity');
 const $reservationLocation = document.getElementById('reservation-location');
 
-const showByFlex = (dom) => dom.style.display = 'flex';
-const showByBlock = (dom) => dom.style.display = 'block';
-const hide = (dom) => dom.style.display = 'none';
-const activate = (dom) => dom.style.borderBottom = '3px solid black';
-const deactivate = (dom) => dom.style.borderBottom = 'none';
+const showByFlex = (dom) => {
+  dom.style.display = 'flex';
+};
+const showByBlock = (dom) => {
+  dom.style.display = 'block';
+};
+const hide = (dom) => {
+  dom.style.display = 'none';
+};
+const activate = (dom) => {
+  dom.style.borderBottom = '3px solid black';
+};
+const deactivate = (dom) => {
+  dom.style.borderBottom = 'none';
+};
 
 $categoryActivity.addEventListener('click', () => {
   showByFlex($reservationActivity);
