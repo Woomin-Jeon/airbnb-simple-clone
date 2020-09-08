@@ -37,7 +37,22 @@ body
       div(class='reservation-text') 인원
       input(class='reservation-input-count' type='number' step='1' min='1' max='6' value='1')
       button(class='search-button' id='searchButton') 검색
-  
+  section(class='statement')
+    div 이제 가까운 곳에서 소중한 인연을 찾아보세요.
+  section(class='kinds')
+    div(class='kind')
+      img(class='kind-img' src='./img/online-activity.webp')
+      div(class='kind-title') 온라인 체험
+      div(class='kind-text') 세계 각지의 호스트가 진행하고 모두 함께 즐기는 독특한 액티비티
+    div(class='kind')
+      img(class='kind-img' src='./img/specific-space.webp')
+      div(class='kind-title') 독특한 공간
+      div(class='kind-text') 단순한 숙소 이상의 특별함이 담긴 공간
+    div(class='kind')
+      img(class='kind-img' src='./img/whole-house.webp')
+      div(class='kind-title') 집 전체
+      div(class='kind-text') 일행만을 위한 편안한 공간에서 친구 및 가족과 오붓한 시간을 보내세요
+
   script(type='module' src='./js/index.js')
   if popup
     script.
