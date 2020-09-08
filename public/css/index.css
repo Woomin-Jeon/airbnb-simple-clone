@@ -44,7 +44,61 @@
 }
 
 .reservationItem {
-  margin: 0 20px;
+  position: relative;
+  padding: 13px;
+  border-radius: 10px;
+  box-sizing: border-box;
+  box-shadow: 0px 1px 2px 0px;
+}
+
+.reservation-text {
+  font-weight: bold;
+}
+
+.reservation-input {
+  border: none;
+  height: 40px;
+  width: 270px;
+}
+
+.reservation-input-location {
+  border: none;
+  height: 40px;
+  width: 450px;
+}
+
+.reservation-input-count {
+  border: none;
+  height: 40px;
+  width: 100px;
+}
+
+
+.location {
+  width: 500px;
+  margin-left: 25px;
+}
+
+.check-in, .check-out {
+  width: 300px;
+}
+
+.user-count {
+  width: 500px;
+}
+
+.search-button {
+  width: 120px;
+  position: absolute;
+  left: 366px;
+  bottom: 13px;
+  height: 65px;
+  background: #e70909;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 24px;
+  font-weight: bold;
 }
 
 .loginButton {
