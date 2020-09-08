@@ -1,0 +1,66 @@
+.header {
+  display: flex;
+  padding: 30px 60px;
+}
+
+.logo {
+  width: 50px;
+  margin-right: 750px;
+}
+
+.myButton {
+  margin-left: 730px;
+  border-radius: 35px;
+  height: 35px;
+  padding: 6px;
+  cursor: pointer;
+  box-shadow: 0px 1px 3px 1px;
+  position: relative;
+}
+
+.loginButton {
+  display: block;
+}
+
+.logoutButton {
+  display: none;
+}
+
+.userInfo {
+  width: 34px;
+  border: 1px solid;
+  border-radius: 30px;
+  margin-right: 5px;
+}
+
+.burger {
+  width: 22px;
+  margin: 0 8px 8px 12px;
+}
+
+.userButtonOn {
+  display: none;
+  position: absolute;
+  margin-top: 20px;
+  width: 250px;
+  box-shadow: 0px 1px 3px 1px;
+  box-sizing: border-box;
+  border-radius: 15px;
+  right: 0px;
+  padding: 25px 0;
+}
+
+.userButton {
+  font-size: 20px;
+  background-color: white;
+  border: none;
+  cursor: pointer;
+  width: 248px;
+  text-align: left;
+  padding: 10px 30px;
+}
+
+.userButton:hover {
+  background-color: #fbf1f1;
+  border: none
+}
