@@ -1,8 +1,8 @@
 .statement {
   font-size: 48px;
+  color: #b33535;
   margin: 70px;
   width: 700px;
-  color: #b33535;
 }
 
 .kinds {
@@ -25,8 +25,8 @@
 
 .kind-title {
   font-weight: bold;
-  margin-left: 25px;
   font-size: 24px;
+  margin-left: 25px;
 }
 
 .kind-text {

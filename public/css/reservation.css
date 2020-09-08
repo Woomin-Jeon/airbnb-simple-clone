@@ -4,11 +4,11 @@
 }
 
 .categoryItem {
-  list-style: none;
-  margin: 0 20px;
-  background: white;
   font-size: 20px;
+  margin: 0 20px;
   padding: 15px 0;
+  background: white;
+  list-style: none;
 }
 
 .category-location {
@@ -43,23 +43,23 @@
 }
 
 .reservation-input {
-  border: none;
-  height: 40px;
   width: 270px;
+  height: 40px;
+  border: none;
   cursor: pointer;
 }
 
 .reservation-input-location {
-  border: none;
-  height: 40px;
   width: 450px;
+  height: 40px;
+  border: none;
   cursor: pointer;
 }
 
 .reservation-input-count {
-  border: none;
-  height: 40px;
   width: 100px;
+  height: 40px;
+  border: none;
   cursor: pointer;
 }
 
@@ -77,15 +77,15 @@
 }
 
 .search-button {
-  width: 120px;
   position: absolute;
+  width: 120px;
+  height: 65px;
   left: 366px;
   bottom: 13px;
-  height: 65px;
-  background: #e70909;
-  color: white;
-  border: none;
-  border-radius: 12px;
   font-size: 24px;
   font-weight: bold;
+  color: white;
+  background: #e70909;
+  border: none;
+  border-radius: 12px;
 }
