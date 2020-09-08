@@ -33,18 +33,19 @@
 .reservationItem {
   position: relative;
   padding: 13px;
-  border-radius: 10px;
   box-sizing: border-box;
   box-shadow: 0px 1px 2px 0px;
 }
 
 .reservation-text {
   font-weight: bold;
+  margin-left: 10px;
 }
 
 .reservation-input {
   width: 270px;
   height: 40px;
+  margin-left: 10px;
   border: none;
   cursor: pointer;
 }
@@ -52,6 +53,7 @@
 .reservation-input-location {
   width: 450px;
   height: 40px;
+  margin-left: 10px;
   border: none;
   cursor: pointer;
 }
@@ -59,6 +61,7 @@
 .reservation-input-count {
   width: 100px;
   height: 40px;
+  margin-left: 10px;
   border: none;
   cursor: pointer;
 }
@@ -66,6 +69,7 @@
 .location {
   width: 500px;
   margin-left: 25px;
+  border-radius: 20px 0 0 20px;
 }
 
 .check-in, .check-out {
@@ -74,6 +78,7 @@
 
 .user-count, .activity {
   width: 500px;
+  border-radius: 0 20px 20px 0;
 }
 
 .search-button {

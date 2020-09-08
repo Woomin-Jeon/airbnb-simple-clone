@@ -6,11 +6,12 @@
 .logo {
   width: 50px;
   margin-right: 750px;
+  margin-left: 15px;
 }
 
 .myButton {
   position: relative;
-  margin-left: 730px;
+  margin-left: 710px;
   padding: 6px;
   height: 35px;
   border-radius: 35px;
