@@ -6,30 +6,33 @@ const $categoryActivity = document.getElementById('category-activity');
 const $reservationActivity = document.getElementById('reservation-activity');
 const $reservationLocation = document.getElementById('reservation-location');
 
+const showByFlex = (dom) => dom.style.display = 'flex';
+const showByBlock = (dom) => dom.style.display = 'block';
+const hide = (dom) => dom.style.display = 'none';
+const activate = (dom) => dom.style.borderBottom = '3px solid black';
+const deactivate = (dom) => dom.style.borderBottom = 'none';
+
 $categoryActivity.addEventListener('click', () => {
-  $reservationLocation.style.display = 'none';
-  $reservationActivity.style.display = 'flex';
-  $categoryLocation.style.border = 'none';
-  $categoryActivity.style.borderBottom = '3px solid black';
+  showByFlex($reservationActivity);
+  hide($reservationLocation);
+  activate($categoryActivity);
+  deactivate($categoryLocation);
 });
-
 $categoryLocation.addEventListener('click', () => {
-  $reservationLocation.style.display = 'flex';
-  $reservationActivity.style.display = 'none';
-  $categoryActivity.style.border = 'none';
-  $categoryLocation.style.borderBottom = '3px solid black';
+  showByFlex($reservationLocation);
+  hide($reservationActivity);
+  activate($categoryLocation);
+  deactivate($categoryActivity);
 });
-
 $userButton.addEventListener('click', () => {
-  const targetCss = $userButtonOn.style;
-  if (!targetCss.display || targetCss.display === 'none') {
-    targetCss.display = 'block';
+  const targetAttribute = $userButtonOn.style.display;
+  if (!targetAttribute || targetAttribute === 'none') {
+    showByBlock($userButtonOn);
     return;
   }
 
-  targetCss.display = 'none';
+  hide($userButtonOn);
 });
-
 $searchButton.addEventListener('click', () => {
   alert('search!');
 });
