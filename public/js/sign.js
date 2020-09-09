@@ -10,9 +10,12 @@ const $signupClose = document.getElementById('signupClose');
 const $backgroundDark = document.getElementById('background-dark');
 
 const darkBackgroundOnOff = (isShowing) => {
-  isShowing
-   ? $backgroundDark.classList.remove('hidden')
-   : $backgroundDark.classList.add('hidden');
+  if (isShowing) {
+    $backgroundDark.classList.remove('hidden');
+    return;
+  }
+
+  $backgroundDark.classList.add('hidden');
 };
 
 $loginButton.addEventListener('click', () => {
