@@ -1,0 +1,57 @@
+.calendar {
+  display: none;
+  position: absolute;
+  left: 291px;
+  bottom: 209px;
+}
+
+.calendar__body {
+  padding: 50px 80px;
+  background-color: white;
+  border-radius: 50px;
+  box-shadow: 0px 1px 7px 0px;
+  margin-left: 3px;
+  font-weight: bold;
+}
+
+.calendar__header {
+  display: flex;
+  justify-content: space-between;
+  padding: 0px 27px;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+.calendar__header__title {
+  font-size: 20px;
+  text-align: center;
+  margin-bottom: 45px;
+}
+
+.day__of__week {
+  margin-left: 5px;
+}
+
+.day__of__week__text {
+  padding: 20.2px;
+}
+
+.day {
+  padding: 14px;
+  text-align: center;
+  width: 30px;
+  height: 30px;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.day:hover {
+  background-color: #f4e7e7;
+  border-radius: 30px;
+}
+
+.focus {
+  border-radius: 30px;
+  background-color: black;
+  color: white;
+}
