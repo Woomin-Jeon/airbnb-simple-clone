@@ -7,6 +7,7 @@ const $categoryLocation = document.getElementById('category-location');
 const $categoryActivity = document.getElementById('category-activity');
 const $reservationActivity = document.getElementById('reservation-activity');
 const $reservationLocation = document.getElementById('reservation-location');
+const $reservationDate = document.getElementById('reservation_date');
 
 const activate = (dom) => {
   dom.classList.add('category-active');
@@ -15,6 +16,18 @@ const activate = (dom) => {
 const deactivate = (dom) => {
   dom.classList.remove('category-active');
 };
+
+$reservationDate.addEventListener('click', () => {
+  const $calendar = document.getElementById('calendar');
+
+  const targetAttribute = $calendar.style.display;
+  if (!targetAttribute || targetAttribute === 'none') {
+    showByFlex($calendar);
+    return;
+  }
+
+  hide($calendar);
+});
 
 $categoryActivity.addEventListener('click', () => {
   showByFlex($reservationActivity);
