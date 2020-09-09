@@ -9,11 +9,11 @@ const $reservationActivity = document.getElementById('reservation-activity');
 const $reservationLocation = document.getElementById('reservation-location');
 
 const activate = (dom) => {
-  dom.style.borderBottom = '3px solid black';
+  dom.classList.add('category-active');
 };
 
 const deactivate = (dom) => {
-  dom.style.borderBottom = 'none';
+  dom.classList.remove('category-active');
 };
 
 $categoryActivity.addEventListener('click', () => {

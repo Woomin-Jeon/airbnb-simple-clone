@@ -9,8 +9,10 @@ const $signupModal = document.getElementById('signupModal');
 const $signupClose = document.getElementById('signupClose');
 const $backgroundDark = document.getElementById('background-dark');
 
-const darkBackgroundOnOff = (bool) => {
-  $backgroundDark.style.display = bool ? 'block' : 'none';
+const darkBackgroundOnOff = (isShowing) => {
+  isShowing
+   ? $backgroundDark.classList.remove('hidden')
+   : $backgroundDark.classList.add('hidden');
 };
 
 $loginButton.addEventListener('click', () => {
@@ -33,5 +35,6 @@ $logoutButton.addEventListener('click', () => {
   move('/logout');
 });
 $backgroundDark.addEventListener('click', () => {
-  [$backgroundDark, $loginModal, $signupModal].forEach((dom) => hide(dom));
+  [$loginModal, $signupModal].forEach((dom) => hide(dom));
+  darkBackgroundOnOff(false);
 });

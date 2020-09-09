@@ -3,16 +3,16 @@
   padding: 20px 60px;
 }
 
+.category-active {
+  border-bottom: 3px solid black;
+}
+
 .categoryItem {
   font-size: 20px;
   margin: 0 20px;
   padding: 15px 0;
   background: white;
   list-style: none;
-}
-
-.category-location {
-  border-bottom: 3px solid black;
 }
 
 .categoryItem:hover {
