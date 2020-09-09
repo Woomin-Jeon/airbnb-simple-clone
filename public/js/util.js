@@ -11,5 +11,5 @@ export const hide = (dom) => {
 };
 
 export const move = (path) => {
-  window.location.href = path;
+  window.location.replace(path);
 };
