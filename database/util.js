@@ -17,17 +17,15 @@ module.exports = {
     return new Promise((resolve) => {
       const encrypedUser = { ...user, pw: useSHA256(user.pw) };
       const data = `\n${JSON.stringify(encrypedUser)}`;
-      fs.appendFile('./database/user.txt', data, () => {});
-
-      resolve(true);
+      fs.appendFile('./database/user.txt', data, () => {
+        resolve(true);
+      });
     });
   },
 
-  findUserById(id) {
-    return new Promise((resolve) => {
-      this.getUsers().then((users) => {
-        resolve(users.find((user) => user.id === id));
-      });
-    });
+  async findUserById(id) {
+    const users = await this.getUsers();
+
+    return users.find((user) => user.id === id);
   },
 };
