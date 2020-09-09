@@ -4,12 +4,9 @@ const state = require('../store');
 
 const signupValidator = () => {
   const responseError = (res, statement) => {
-    const { signupModal, redirect, popup } = state
-      .setSignupModal(true)
-      .setRedirect('/')
-      .setPopup(`${statement}`);
+    state.setSignupModal(true).setPopup(`${statement}`);
 
-    res.render('index', { signupModal, redirect, popup });
+    res.redirect('/');
   };
 
   return async (req, res, next) => {
@@ -41,12 +38,9 @@ const loginValidator = () => async (req, res, next) => {
   const user = await DB.findUserById(id);
 
   if (!user || user.pw !== encryptedPassword) {
-    const { loginModal, redirect, popup } = state
-      .setLoginModal(true)
-      .setRedirect('/')
-      .setPopup('아이디 혹은 비밀번호가 일치하지 않습니다.');
+    state.setLoginModal(true).setPopup('아이디 혹은 비밀번호가 일치하지 않습니다.');
 
-    res.render('index', { loginModal, redirect, popup });
+    res.redirect('/');
     return;
   }
 

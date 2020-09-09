@@ -7,12 +7,9 @@ const state = require('../store');
 router.get('/', (req, res) => {
   req.session.removeSession(req, res);
 
-  const { loggedIn, redirect, popup } = state
-    .setLoggedIn(false)
-    .setRedirect('/')
-    .setPopup('로그아웃 되었습니다.');
+  state.setLoggedIn(false).setPopup('로그아웃 되었습니다.');
 
-  res.render('index', { loggedIn, redirect, popup });
+  res.redirect('/');
 });
 
 module.exports = router;

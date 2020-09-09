@@ -27,7 +27,7 @@ const actions = {
 
 const store = {
   loginModal: false,
-  signupModal: true,
+  signupModal: false,
   redirect: '/',
   loggedIn: false,
   name: '',
