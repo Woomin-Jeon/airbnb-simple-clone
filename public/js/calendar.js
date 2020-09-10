@@ -71,6 +71,21 @@ const renderCalendar = (dom, { year, month }, direction) => {
     </table>
   `;
 
+  const $days = document.getElementsByClassName('day');
+
+  const currentDate = `${currentYear}-${currentMonth}-${new Date().getDate()}`;
+  const currentTotalDay = getTotalDay(currentDate);
+
+  const pastPeriod = [...$days].filter((day) => {
+    const targetTotalDay = getTotalDay(day.id);
+
+    return targetTotalDay < currentTotalDay;
+  });
+
+  pastPeriod.forEach((day) => {
+    day.classList.add('unused');
+  });
+
   const { selectedDayIds } = calendarData;
 
   if (!selectedDayIds.length === 0) {
@@ -105,14 +120,13 @@ const renderCalendar = (dom, { year, month }, direction) => {
     const startTotalDay = getTotalDay(startDayId);
     const endTotalDay = getTotalDay(endDayId);
 
-    const $days = document.getElementsByClassName('day');
-    const filteredDays = [...$days].filter((day) => {
+    const selectedPeriod = [...$days].filter((day) => {
       const targetTotalDay = getTotalDay(day.id);
 
       return targetTotalDay > startTotalDay && targetTotalDay < endTotalDay;
     });
 
-    filteredDays.forEach((day) => {
+    selectedPeriod.forEach((day) => {
       day.classList.add('active');
     });
   }

@@ -56,6 +56,11 @@
   border-radius: 30px;
 }
 
+.unused {
+  pointer-events: none;
+  color: #f4e7e7;
+}
+
 .active {
   background-color: #f4e7e7;
 }
