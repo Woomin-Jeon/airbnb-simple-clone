@@ -122,8 +122,9 @@ const renderCalendar = (dom, { year, month }, direction) => {
 
     const selectedPeriod = [...$days].filter((day) => {
       const targetTotalDay = getTotalDay(day.id);
+      const targetDay = day.id.split('-')[2];
 
-      return targetTotalDay > startTotalDay && targetTotalDay < endTotalDay;
+      return (targetTotalDay > startTotalDay && targetTotalDay < endTotalDay) && targetDay !== '0';
     });
 
     selectedPeriod.forEach((day) => {
