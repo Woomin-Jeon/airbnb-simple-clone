@@ -24,22 +24,19 @@ const getCalender = (year, month) => {
   const firstDayOfWeek = getDayOfWeek(`${year}-${month}-1`);
 
   const forwardEmptyDays = Array(firstDayOfWeek).fill(0);
-  const backwardEmptyDays = Array((days.length - firstDayOfWeek + 1) % WEEK_NUMBER).fill(0);
-  const filledCalendar = [...forwardEmptyDays, ...days, ...backwardEmptyDays];
+  const filledCalendar = [...forwardEmptyDays, ...days];
 
   return splitByLegnth(filledCalendar, WEEK_NUMBER);
 };
 
-getCalender(2020, 10);
-
-const renderCalendar = (dom, year, month, direction) => {
+const renderCalendar = (dom, { year, month }, direction) => {
   const calendar = getCalender(year, month);
 
   dom.innerHTML = `
     <div class='calendar__header'>
-      <div id='${direction}Calendar_privious_button'><</div>
+      <div class='calendar__month__button' id='${direction}Calendar_privious_button'><</div>
       <div class='calendar__header__title'>${year}년 ${month}월</div>
-      <div id='${direction}Calendar_next_button'>></div>
+      <div class='calendar__month__button' id='${direction}Calendar_next_button'>></div>
     </div>
     <div class='day__of__week'>
       <span class='day__of__week__text'>일</span>
@@ -57,46 +54,85 @@ const renderCalendar = (dom, year, month, direction) => {
   `;
 };
 
-const $calendarLeft = document.getElementById('calendar_left');
-const $calendarRight = document.getElementById('calendar_right');
 const currentYear = new Date().getFullYear();
 const currentMonth = new Date().getMonth() + 1;
 
-let rightYear = currentYear;
-let rightMonth = currentMonth + 1;
+const calendarData = {
+  left: {
+    year: currentYear,
+    month: currentMonth,
+  },
+  right: {
+    year: currentYear,
+    month: currentMonth + 1,
+  },
+};
 
-renderCalendar($calendarLeft, currentYear, currentMonth, 'left');
-renderCalendar($calendarRight, rightYear, rightMonth, 'right');
+const moveMonth = (prevOrNext, direction) => {
+  const conditions = {
+    next: {
+      endOfYear: prevOrNext === 'next' && calendarData[direction].month === 12,
+      middleOfYear: prevOrNext === 'next' && calendarData[direction].month < 12,
+    },
+    prev: {
+      startOfYear: prevOrNext === 'prev' && calendarData[direction].month === 1,
+      middleOfYear: prevOrNext === 'prev' && calendarData[direction].month > 1,
+    },
+  };
 
-const $rightCalendarPriviousButton = document.getElementById('rightCalendar_privious_button');
-const $rightCalendarNextButton = document.getElementById('rightCalendar_next_button');
-
-$rightCalendarPriviousButton.addEventListener('click', () => {
-  if (rightMonth === 1) {
-    rightYear -= 1;
-    rightMonth = 12;
-  } else {
-    rightMonth -= 1;
+  if (conditions.next.endOfYear) {
+    calendarData[direction].year += 1;
+    calendarData[direction].month = 1;
+    return;
   }
 
-  renderCalendar($calendarRight, rightYear, rightMonth, 'right');
-});
-
-$rightCalendarNextButton.addEventListener('click', () => {
-  if (rightMonth === 12) {
-    rightYear += 1;
-    rightMonth = 1;
-  } else {
-    rightMonth += 1;
+  if (conditions.next.middleOfYear) {
+    calendarData[direction].month += 1;
+    return;
   }
 
-  renderCalendar($calendarRight, rightYear, rightMonth, 'right');
-});
+  if (conditions.prev.startOfYear) {
+    calendarData[direction].year -= 1;
+    calendarData[direction].month = 12;
+    return;
+  }
 
-const $elements = document.getElementsByClassName('day');
+  if (conditions.prev.middleOfYear) {
+    calendarData[direction].month -= 1;
+  }
+};
 
-[...$elements].forEach((element) => {
-  element.addEventListener('click', (event) => {
-    event.target.classList.add('focus');
+const handleMonthButton = ($button, $calendarLeft, $calendarRight, prevOrNext, direction) => {
+  $button.addEventListener('click', () => {
+    moveMonth(prevOrNext, direction);
+
+    renderCalendar($calendarLeft, calendarData.left, 'left');
+    renderCalendar($calendarRight, calendarData.right, 'right');
+    connectEventListener($calendarLeft, $calendarRight);
   });
-});
+};
+
+const connectEventListener = ($calendarLeft, $calendarRight) => {
+  const $rightCalendarPriviousButton = document.getElementById('rightCalendar_privious_button');
+  const $rightCalendarNextButton = document.getElementById('rightCalendar_next_button');
+  const $leftCalendarPriviousButton = document.getElementById('leftCalendar_privious_button');
+  const $leftCalendarNextButton = document.getElementById('leftCalendar_next_button');
+  const $elements = document.getElementsByClassName('day');
+
+  handleMonthButton($rightCalendarPriviousButton, $calendarLeft, $calendarRight, 'prev', 'right');
+  handleMonthButton($rightCalendarNextButton, $calendarLeft, $calendarRight, 'next', 'right');
+  handleMonthButton($leftCalendarPriviousButton, $calendarLeft, $calendarRight, 'prev', 'left');
+  handleMonthButton($leftCalendarNextButton, $calendarLeft, $calendarRight, 'next', 'left');
+
+  [...$elements].forEach((element) => {
+    element.addEventListener('click', (event) => {
+      event.target.classList.add('focus');
+    });
+  });
+};
+
+const $calendarLeft = document.getElementById('calendar_left');
+const $calendarRight = document.getElementById('calendar_right');
+renderCalendar($calendarLeft, calendarData.left, 'left');
+renderCalendar($calendarRight, calendarData.right, 'right');
+connectEventListener($calendarLeft, $calendarRight);
