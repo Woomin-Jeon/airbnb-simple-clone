@@ -1,4 +1,22 @@
 const WEEK_NUMBER = 7;
+const MONTH_NUMBER = 12;
+const DAY_NUMBER = 30;
+
+const currentYear = new Date().getFullYear();
+
+const currentMonth = new Date().getMonth() + 1;
+
+const calendarData = {
+  left: {
+    year: currentYear,
+    month: currentMonth,
+  },
+  right: {
+    year: currentYear,
+    month: currentMonth + 1,
+  },
+  selectedDayIds: [],
+};
 
 const checkIsLeapYear = (year) => new Date(year, 1, 29).getDate() === 29;
 
@@ -49,23 +67,60 @@ const renderCalendar = (dom, { year, month }, direction) => {
     </div>
     <table>
       ${calendar.map((line) => `<tr>
-        ${line.map((e) => `<td class='day'>${e || ''}</td>`).join('')}</tr>`).join('')}
+        ${line.map((e) => `<td id='${year}-${month}-${e}' class='day'>${e || ''}</td>`).join('')}</tr>`).join('')}
     </table>
   `;
+
+  const { selectedDayIds } = calendarData;
+
+  if (!selectedDayIds.length === 0) {
+    return;
+  }
+
+  if (selectedDayIds.length === 1) {
+    const [selectedYear, selectedMonth] = selectedDayIds[0].split('-');
+
+    if (selectedYear === year.toString() && selectedMonth === month.toString()) {
+      const selectedDay = document.getElementById(selectedDayIds[0]);
+      selectedDay.classList.add('focus');
+    }
+  }
+
+  if (selectedDayIds.length === 2) {
+    const [startDayId, endDayId] = selectedDayIds;
+
+    const [selectedStartYear, selectedStartMonth] = startDayId.split('-');
+    const [selectedEndYear, selectedEndMonth] = endDayId.split('-');
+
+    if (selectedStartYear === year.toString() && selectedStartMonth === month.toString()) {
+      const selectedDay = document.getElementById(startDayId);
+      selectedDay.classList.add('focus');
+    }
+
+    if (selectedEndYear === year.toString() && selectedEndMonth === month.toString()) {
+      const selectedDay = document.getElementById(endDayId);
+      selectedDay.classList.add('focus');
+    }
+
+    const startTotalDay = getTotalDay(startDayId);
+    const endTotalDay = getTotalDay(endDayId);
+
+    const $days = document.getElementsByClassName('day');
+    const filteredDays = [...$days].filter((day) => {
+      const targetTotalDay = getTotalDay(day.id);
+
+      return targetTotalDay > startTotalDay && targetTotalDay < endTotalDay;
+    });
+
+    filteredDays.forEach((day) => {
+      day.classList.add('active');
+    });
+  }
 };
 
-const currentYear = new Date().getFullYear();
-const currentMonth = new Date().getMonth() + 1;
-
-const calendarData = {
-  left: {
-    year: currentYear,
-    month: currentMonth,
-  },
-  right: {
-    year: currentYear,
-    month: currentMonth + 1,
-  },
+const getTotalDay = (targetDay) => {
+  const [year, month, day] = targetDay.split('-').map((v) => Number(v));
+  return (year * MONTH_NUMBER * DAY_NUMBER) + (month * DAY_NUMBER) + day;
 };
 
 const moveMonth = (prevOrNext, direction) => {
@@ -102,13 +157,44 @@ const moveMonth = (prevOrNext, direction) => {
   }
 };
 
+const removeAdjacentDay = (targetDomId, selectedDayIds) => {
+  const targetTotalDay = getTotalDay(targetDomId);
+  const aTotalDay = getTotalDay(selectedDayIds[0]);
+  const bTotalDay = getTotalDay(selectedDayIds[1]);
+
+  const differenceBetweenAandTarget = Math.abs(targetTotalDay - aTotalDay);
+  const differenceBetweenBandTarget = Math.abs(targetTotalDay - bTotalDay);
+
+  if (differenceBetweenAandTarget > differenceBetweenBandTarget) {
+    selectedDayIds.pop();
+    return;
+  }
+
+  selectedDayIds.shift();
+};
+
 const handleMonthButton = ($button, $calendarLeft, $calendarRight, prevOrNext, direction) => {
   $button.addEventListener('click', () => {
     moveMonth(prevOrNext, direction);
 
-    renderCalendar($calendarLeft, calendarData.left, 'left');
-    renderCalendar($calendarRight, calendarData.right, 'right');
-    connectEventListener($calendarLeft, $calendarRight);
+    update($calendarLeft, $calendarRight);
+  });
+};
+
+const handleDayButton = ($days) => {
+  [...$days].forEach((day) => {
+    day.addEventListener('click', (event) => {
+      const { selectedDayIds } = calendarData;
+
+      if (selectedDayIds.length === 2) {
+        removeAdjacentDay(event.target.id, selectedDayIds);
+      }
+
+      selectedDayIds.push(event.target.id);
+      selectedDayIds.sort((a, b) => getTotalDay(a) - getTotalDay(b));
+
+      update($calendarLeft, $calendarRight);
+    });
   });
 };
 
@@ -117,22 +203,22 @@ const connectEventListener = ($calendarLeft, $calendarRight) => {
   const $rightCalendarNextButton = document.getElementById('rightCalendar_next_button');
   const $leftCalendarPriviousButton = document.getElementById('leftCalendar_privious_button');
   const $leftCalendarNextButton = document.getElementById('leftCalendar_next_button');
-  const $elements = document.getElementsByClassName('day');
+  const $days = document.getElementsByClassName('day');
 
   handleMonthButton($rightCalendarPriviousButton, $calendarLeft, $calendarRight, 'prev', 'right');
   handleMonthButton($rightCalendarNextButton, $calendarLeft, $calendarRight, 'next', 'right');
   handleMonthButton($leftCalendarPriviousButton, $calendarLeft, $calendarRight, 'prev', 'left');
   handleMonthButton($leftCalendarNextButton, $calendarLeft, $calendarRight, 'next', 'left');
 
-  [...$elements].forEach((element) => {
-    element.addEventListener('click', (event) => {
-      event.target.classList.add('focus');
-    });
-  });
+  handleDayButton($days);
+};
+
+const update = ($calendarLeft, $calendarRight) => {
+  renderCalendar($calendarLeft, calendarData.left, 'left');
+  renderCalendar($calendarRight, calendarData.right, 'right');
+  connectEventListener($calendarLeft, $calendarRight);
 };
 
 const $calendarLeft = document.getElementById('calendar_left');
 const $calendarRight = document.getElementById('calendar_right');
-renderCalendar($calendarLeft, calendarData.left, 'left');
-renderCalendar($calendarRight, calendarData.right, 'right');
-connectEventListener($calendarLeft, $calendarRight);
+update($calendarLeft, $calendarRight);
