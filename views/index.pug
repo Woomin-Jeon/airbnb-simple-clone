@@ -10,17 +10,19 @@ head
   link(href='./css/dark.css' type='text/css' rel='stylesheet')
   link(href='./css/recommander.css' type='text/css' rel='stylesheet')
   link(href='./css/calendar.css' type='text/css' rel='stylesheet')
+  link(href='./css/main.css' type='text/css' rel='stylesheet')
+  script(src="https://kit.fontawesome.com/a1e8a2cbbc.js" crossorigin="anonymous")
 body
   include ./util/dark.pug
   include ./modal/login.pug
   include ./modal/signup.pug
 
-  include ./util/header.pug
-  include ./main/navigation.pug
-  include ./main/reservationActivity.pug
-  include ./main/reservationLocation.pug
-  include ./modal/calendar.pug
-  include ./main/statement.pug
+  div(class='main')
+    include ./util/header.pug
+    include ./main/reservationActivity.pug
+    include ./main/reservationLocation.pug
+    include ./modal/calendar.pug
+    include ./main/statement.pug
   include ./main/kinds.pug
   include ./main/recommander.pug
 

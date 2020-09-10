@@ -10,7 +10,12 @@
   position: relative;
   background-color: black;
   color: white;
-  padding: 70px;
+  padding: 85px;
+}
+
+.recommander-header {
+  display: flex;
+  justify-content: space-between;
 }
 
 .recommander-title {
@@ -25,10 +30,9 @@
 }
 
 .recommander-all-button {
-  position: absolute;
-  padding: 9px;
-  left: 1530px;
-  top: 70px;
+  margin-right: 15px;
+  padding: 10px 25px;
+  height: 50px;
   font-size: 20px;
   background-color: black;
   color: white;
@@ -39,12 +43,20 @@
 
 .recommander-leftBig,
 .recommander-rightSmall1,
-.recommander-rightSmall2,
+.recommander-rightSmall2 {
+  border-radius: 30px;
+  background-color: #282727;
+  margin: 10px;
+  cursor: pointer;
+  width: 50%;
+}
+
 .recommander-rightBottom {
   border-radius: 30px;
   background-color: #282727;
   margin: 10px;
   cursor: pointer;
+  width: 98%;
 }
 
 .recommander-leftBig-img,
@@ -74,13 +86,14 @@
 }
 
 .recommander-leftBig-img {
-  width: 810px;
+  width: 100%;
+  height: 92%;
 }
 
 .recommander-rigthSmall1-img, .recommander-rigthSmall2-img {
-  width: 370px;
+  width: 100%;
 }
 
 .recommander-rightBottom-img {
-  width: 760px;
+  width: 100%;
 }
