@@ -15,5 +15,6 @@ module.exports = {
     'no-param-reassign': 'off',
     'no-alert': 'off',
     'import/extensions': 'off',
+    'no-use-before-define': 'off',
   },
 };
