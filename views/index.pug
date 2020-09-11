@@ -11,6 +11,7 @@ head
   link(href='./css/recommander.css' type='text/css' rel='stylesheet')
   link(href='./css/calendar.css' type='text/css' rel='stylesheet')
   link(href='./css/main.css' type='text/css' rel='stylesheet')
+  link(href='./css/footer.css' type='text/css' rel='stylesheet')
   script(src="https://kit.fontawesome.com/a1e8a2cbbc.js" crossorigin="anonymous")
 body
   include ./util/dark.pug
@@ -25,6 +26,7 @@ body
     include ./main/statement.pug
   include ./main/kinds.pug
   include ./main/recommander.pug
+  include ./util/footer.pug
 
   script(type='module' src='./js/reservation.js')
   script(type='module' src='./js/sign.js')
