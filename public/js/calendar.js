@@ -76,13 +76,14 @@ const renderCalendar = (dom, { year, month }, direction) => {
   const currentDate = `${currentYear}-${currentMonth}-${new Date().getDate()}`;
   const currentTotalDay = getTotalDay(currentDate);
 
-  const pastPeriod = [...$days].filter((day) => {
+  const unusedPeriod = [...$days].filter((day) => {
     const targetTotalDay = getTotalDay(day.id);
+    const targetDay = day.id.split('-')[2];
 
-    return targetTotalDay < currentTotalDay;
+    return (targetTotalDay < currentTotalDay) || (targetDay === '0');
   });
 
-  pastPeriod.forEach((day) => {
+  unusedPeriod.forEach((day) => {
     day.classList.add('unused');
   });
 
