@@ -40,9 +40,16 @@ const getCalender = (year, month) => {
   const monthes = getMonthes(year);
   const days = getDays(monthes, month);
   const firstDayOfWeek = getDayOfWeek(`${year}-${month}-1`);
+  const firstWeekSlicedDayCount = days.length - (WEEK_NUMBER - firstDayOfWeek);
+  const remainDaysCount = WEEK_NUMBER - (firstWeekSlicedDayCount % WEEK_NUMBER);
+  const isFiveWeeks = Math.floor(firstWeekSlicedDayCount / WEEK_NUMBER) >= 4;
 
   const forwardEmptyDays = Array(firstDayOfWeek).fill(0);
-  const filledCalendar = [...forwardEmptyDays, ...days];
+  const backwardEmptyDays = isFiveWeeks
+    ? Array(remainDaysCount).fill(0)
+    : Array(remainDaysCount + WEEK_NUMBER).fill(0);
+
+  const filledCalendar = [...forwardEmptyDays, ...days, ...backwardEmptyDays];
 
   return splitByLegnth(filledCalendar, WEEK_NUMBER);
 };
